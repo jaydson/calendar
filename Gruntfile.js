@@ -9,24 +9,27 @@ module.exports = function(grunt) {
 				modules: 'common'
 			},
 
-			main: {
+			build: {
 				files: [{
-					src: ['./src/app.js'],
-					dest: 'dist/app.js',
-				}]
+					expand: true,
+					cwd: 'src/',
+					src: ['**/*.js'],
+					dest: 'dist/',
+				}],
 			}
 		},
 
 		browserify: {
 			main: {
-				src: ['dist/sample/common/app.js'],
-				dest: 'dist/sample/common/bundle.js'
+				src: ['dist/app.js'],
+				dest: 'dist/bundle.js'
 			}
 		},
 
 		copy: {
 			main: {
 				expand: true,
+				flatten: true,
 				cwd: './src',
 				src: ['static/**'],
 				dest: 'dist'
@@ -34,5 +37,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['copy', '6to5','browserify']);
+	grunt.registerTask('default', ['clean','copy', '6to5','browserify']);
 }

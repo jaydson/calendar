@@ -1,0 +1,50 @@
+html {
+	font-family: arial;
+	font-size: 13px;
+}
+.event_container {
+	position: relative;
+	float: left;
+	height: 750px;
+	width: 620px;
+	background-color: #ECECEC;
+	margin-top: 25px;
+	padding: 0 10px 0 10px;
+}
+.day-event {
+	border: 1px solid #D5D5D5;
+	position: absolute;
+	background-color: white;
+	border-left: 4px solid #4B6EA8;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 5px;
+}
+.ampm {
+	font-size:9px;
+	color: rgb(161, 154, 154);
+}
+
+.event {
+	position: absolute;
+	border: solid 1px rgb(215, 207, 207);
+	background: #fff;
+	padding: 0 10px 0 10px;
+	border-left: solid 4px rgb(74, 74, 189);
+}
+ul {
+	border-right: solid 2px rgb(176, 171, 171);
+	float: left;
+	list-style: none;
+	text-align: right;
+	padding: 0 12px 0 0;
+	margin: 25px 0px 0 0;
+	color: #666;
+}
+li {
+	height: 30px;
+}
+span.hour {
+	font-weight: bold;
+}
