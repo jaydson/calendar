@@ -3,7 +3,7 @@ import Event from './event';
 
 export default class Calendar {
 	constructor() {
-		this.slots = helper.populateSlots();
+		this.slots = helper.createSlots();
 	}
 
 	//middleware
@@ -12,12 +12,20 @@ export default class Calendar {
 	}
 
 	addEvents(events) {
-		for (let i = 0; i < events.length; i++) {
-			let event = events[i];
+
+		// Sort events
+		this.events = events.sort(function(a, b) {
+			return a.start - b.start;
+		});
+
+
+		// Loop events and populate slots
+		for (let i = 0; i < this.events.length; i++) {
+			let event = this.events[i];
+			event.id = i;
 			for (let j = event.start; j < event.end; j++) {
 				this.slots[j].push(event);
 			}
 		}
-		console.log(this.slots);
 	}
 }
