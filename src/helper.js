@@ -27,9 +27,13 @@ function generateIds(events) {
 
 // Clean the calendar
 function cleanCalendar() {
-	
+
 	// Reset last id
 	window.globalLastId = 0;
-	let mainElem = document.querySelector('#event_container');
-	mainElem.innerHTML = '';
+	try {
+		let mainElem = document.querySelector('#event_container');
+		mainElem.innerHTML = '';
+	} catch (e) {
+		console.log('No main element found');
+	}
 }

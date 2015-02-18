@@ -82,10 +82,28 @@ describe('calendar', function() {
 
 	// dynamically added
 	it('must place event starting at 9am until 11:30am ({start:30, end:150}) in the properly slots', function() {
+		cal.update([{ start:30, end: 150}]);
 		let slots = cal.slots;
 		for (let i = 30; i < 150; i += 1) {
 			expect(typeof slots[i]).toBe('object');
-			expect(slots[i].length).toBe(1);
+			expect(slots[i].length).toBe(2);
+		}
+	});
+
+	// dynamically added
+	it('must place event starting at 7:10pm until 8:10pm ({start:610, end:670}) in the properly slots', function() {
+		cal.update([
+			{ start:610, end: 670 },
+			{ start:610, end: 670 },
+			{ start:610, end: 670 },
+			{ start:610, end: 670 },
+			{ start:610, end: 670 },
+			{ start:610, end: 670 }
+		]);
+		let slots = cal.slots;
+		for (let i = 620; i < 670; i += 1) {
+			expect(typeof slots[i]).toBe('object');
+			expect(slots[i].length).toBe(7);
 		}
 	});
 
