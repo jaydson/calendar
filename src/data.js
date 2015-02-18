@@ -1,4 +1,4 @@
-export let events = [ 
+export let events = [
 	{ start: 30, end: 150 },
 	{ start: 540, end: 600 },
 	{ start: 560, end: 620 },

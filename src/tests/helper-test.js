@@ -1,7 +1,7 @@
 // __tests__/helper-test.js
 jest.dontMock('../helper');
 
-let helper = require('../helper');
+import * as helper from '../helper';
 
 describe('helper', function() {
 	it('it must create the the slots properly', function() {
@@ -9,7 +9,7 @@ describe('helper', function() {
 		expect(typeof slots).toBe('object');
 		expect(slots.length).toBe(720);
 	});
-	
+
 	it('it must generate event ids', function() {
 		let events = [
 			{ start: 30, end: 150 },

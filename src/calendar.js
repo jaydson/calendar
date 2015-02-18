@@ -11,13 +11,13 @@ export default class Calendar {
 		// Generate dinamically id's
 		helper.generateIds(events);
 
-		// Just keep events sorted
+		// Just keep events sorted by id
 		this.events = this.events.sort(function(a, b) {
-			return a.start - b.start;
+			return a.id - b.id;
 		});
 	}
 
-	// Store the event id in each slot minute.
+	// Store the event id in each slot minute
 	populateSlots() {
 		let eventsLength = this.events.length;
 
@@ -40,7 +40,9 @@ export default class Calendar {
 		}
 	}
 
+	// Check event collision
 	adjustConflicts() {
+
 		// Loop through slots looking for conflicts
 		for (let i = 0; i < this.slots.length; i += 1) {
 			let next_hindex = 0;
@@ -59,7 +61,7 @@ export default class Calendar {
 					if (!event.collides || event.collides < slotLen) {
 						event.collides = slotLen;
 
-						// Control the horizontal position
+						// Control the horizontal position (columns)
 						if (!event.hindex) {
 							event.hindex = next_hindex;
 							next_hindex++;
@@ -70,6 +72,7 @@ export default class Calendar {
 		}
 	}
 
+	// Add events to the calendar
 	addEvents(events) {
 
 		// Store events in the Calendar instance
@@ -80,7 +83,7 @@ export default class Calendar {
 		this.populateSlots();
 
 		this.adjustConflicts();
-     
+
 		for (let i = 0; i < this.events.length; i += 1) {
 			let event = this.events[i];
 			event.height = event.end - event.start;
@@ -92,6 +95,30 @@ export default class Calendar {
 			let ev = new Event(event);
 			ev.render();
 		}
-   };
+	};
+
+	// Update the calendar with new and old events
+	update(events) {
+		helper.cleanCalendar();
+		this.slots = helper.createSlots();
+
+		// Clean events data
+		for (let i = 0; i < this.events.length; i += 1) {
+			this.events[i].width = null;
+			this.events[i].height = null;
+			this.events[i].top = null;
+			this.events[i].left = null;
+			this.events[i].hindex = 0;
+			this.events[i].collides = 0;
+		}
+
+		// Populate the array of events with new ones
+		for (let i = 0; i < events.length; i += 1) {
+			this.events.push(events[i]);
+		}
+
+		// Call addEvents for a new fresh calendar
+		this.addEvents(this.events);
+	}
 };
 

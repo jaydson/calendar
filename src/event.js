@@ -1,21 +1,24 @@
+// Main DOM event element container
 const mainElem = document.querySelector('#event_container');
 
+// Class event
 export default class Event {
 
+	// Constructor takes the event details
 	constructor(details) {
 		this.details = details;
-		console.log('new event');
 	}
 
+
+	// Render event DOM element
 	render() {
-		console.log(this.details);
 		let width = this.details.width - 30;
-		let top = this.details.start;
+		let top = this.details.top;
 		let height = this.details.height;
 		let left = this.details.left;
 		let elem = document.createElement('div');
 		elem.setAttribute('class','event');
-		elem.innerHTML = 'Sample event > ' + new Date();
+		elem.innerHTML = `Event ID: ${this.details.id}`;
 		elem.style.top = `${top}px`;
 		elem.style.width = `${width}px`;
 		elem.style.height = `${height}px`;
