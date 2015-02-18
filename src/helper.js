@@ -2,7 +2,15 @@ export { layOutDay, createSlots, generateIds, cleanCalendar };
 
 // Necessary function for validation
 function layOutDay(events) {
-	window.globalCalendar.update(events);
+	if (!events || typeof events !== 'object') {
+		throw new Error('You must to provide an array of events');
+	};
+
+	if (window.globalCalendar) {
+		window.globalCalendar.update(events);
+	} else {
+		throw new Error('The global calendar was not found');
+	}
 }
 
 // Create all necessary slots
